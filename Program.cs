@@ -30,7 +30,11 @@ namespace BlackJackCS
         }
         static void Main(string[] args)
         {
+            Console.WriteLine();
+
             WelcomeToBlackJack();
+
+            Console.WriteLine();
 
             WantToPlay();
 
@@ -81,10 +85,22 @@ namespace BlackJackCS
             {
                 playerHand.Add(firstHand);
             }
+
+            var dealerHand = new List<string>();
+
+            var secondHand = ($"{deck[2]} and {deck[3]}");
+
+            foreach (var hand in secondHand)
+            {
+                playerHand.Add(secondHand);
+            }
+
             Console.WriteLine();
+            Console.WriteLine("-----------------------------");
             Console.WriteLine("...dealing...");
+            Console.WriteLine("-----------------------------");
             Console.WriteLine();
-            Console.WriteLine($"So {firstHand}");
+            Console.WriteLine($"So you've got {firstHand}");
 
 
 
@@ -97,27 +113,36 @@ namespace BlackJackCS
 
 
 
-
-
-            Console.WriteLine($"So you've got the {deck[0]} and the {deck[1]}");
-
             Console.WriteLine();
 
             Console.WriteLine("-----------------------------");
 
             Console.WriteLine("Do you want to Hit or Stand?");
 
+            Console.WriteLine("-----------------------------");
+
             var answer = Console.ReadLine();
+
+            Console.WriteLine();
+
+            playerHand.Clear();
 
             if (answer == "Hit" || answer == "hit" | answer == "HIT")
             {
                 Console.WriteLine($"Next card is {deck[4]}.");
+                var thirdHand = ($"{deck[2]},{deck[3]}, and {deck[4]}");
+
+                foreach (var hand in thirdHand)
+                {
+                    playerHand.Add(thirdHand);
+                }
             }
             else if (answer == "Stand" || answer == "stand" | answer == "STAND")
             {
                 // command for standing
             }
 
+            Console.WriteLine($"{playerHand}");
             Console.WriteLine("-----------------------------");
 
 
