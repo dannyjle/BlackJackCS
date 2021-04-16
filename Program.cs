@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace BlackJackCS
 {
@@ -32,6 +33,64 @@ namespace BlackJackCS
             WelcomeToBlackJack();
 
             WantToPlay();
+
+
+            var cards = new List<string>() { "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King" };
+            var suits = new List<string>() { "Spades", "Clubs", "Diamonds", "Hearts" };
+
+            var deck = new List<string>();
+
+            for (var c = 0; c < cards.Count; c++)
+            {
+                for (var s = 0; s < suits.Count; s++)
+                {
+                    var allCards = ($"{cards[c]} of {suits[s]}");
+                    deck.Add(allCards);
+                }
+
+            }
+
+            foreach (var all in deck) ;
+
+            var numberOfCards = deck.Count;
+
+            for (var rightIndex = numberOfCards - 1; rightIndex >= 0; rightIndex--)
+            {
+                var leftIndex = new Random().Next(0, rightIndex);
+                // Placeholder for rightcard
+                var rightCard = deck[rightIndex];
+                // Placeholder for leftcard
+                var leftCard = deck[leftIndex];
+
+                deck[leftIndex] = rightCard;
+                deck[rightIndex] = leftCard;
+
+            }
+
+            foreach (var all in deck) ;
+
+            Console.WriteLine();
+
+            Console.WriteLine($"So you've got the {deck[0]} and the {deck[1]}");
+
+            Console.WriteLine();
+
+            Console.WriteLine("-----------------------------");
+
+            Console.WriteLine("Do you want to Hit or Stand?");
+
+            var answer = Console.ReadLine();
+
+            if (answer == "Hit" || answer == "hit" | answer == "HIT")
+            {
+                Console.WriteLine($"Next card is {deck[3]}.");
+            }
+            else if (answer == "Stand" || answer == "stand" | answer == "STAND")
+            {
+                // command for standing
+            }
+
+            Console.WriteLine("-----------------------------");
 
 
 
