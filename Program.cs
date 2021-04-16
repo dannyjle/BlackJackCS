@@ -71,6 +71,34 @@ namespace BlackJackCS
 
             Console.WriteLine();
 
+
+
+            var playerHand = new List<string>();
+
+            var firstHand = ($"{deck[0]} and {deck[1]}");
+
+            foreach (var hand in firstHand)
+            {
+                playerHand.Add(firstHand);
+            }
+            Console.WriteLine();
+            Console.WriteLine("...dealing...");
+            Console.WriteLine();
+            Console.WriteLine($"So {firstHand}");
+
+
+
+
+
+            // if (cards == Ace)
+            // {
+            //     var Ace = 11;
+            // }
+
+
+
+
+
             Console.WriteLine($"So you've got the {deck[0]} and the {deck[1]}");
 
             Console.WriteLine();
@@ -83,7 +111,7 @@ namespace BlackJackCS
 
             if (answer == "Hit" || answer == "hit" | answer == "HIT")
             {
-                Console.WriteLine($"Next card is {deck[3]}.");
+                Console.WriteLine($"Next card is {deck[4]}.");
             }
             else if (answer == "Stand" || answer == "stand" | answer == "STAND")
             {
@@ -94,6 +122,10 @@ namespace BlackJackCS
 
 
 
+            // if (cards == Ace)
+            // {
+            //     var Ace = 11;
+            // }
 
 
 
