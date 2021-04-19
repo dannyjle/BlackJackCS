@@ -29,15 +29,15 @@ namespace BlackJackCS
 
         public int Value()
         {
-            // What to do here? -- the work
+            // Work
             return 0;
         }
 
-        public string Description()
+        public string Title()
         {
-            var newDescriptionString = $"The {Rank} of {Suit}";
+            var newTitleString = $"The {Rank} of {Suit}";
 
-            return newDescriptionString;
+            return newTitleString;
         }
     }
 
@@ -104,7 +104,7 @@ namespace BlackJackCS
 
             WantToPlay();
 
-
+            //creating the deck
             var deck = new List<Card>();
             var ranks = new List<string>() { "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King" };
             var suits = new List<string>() { "Spades", "Clubs", "Diamonds", "Hearts" };
@@ -120,7 +120,7 @@ namespace BlackJackCS
 
             }
 
-
+            // shuffle
             var numberOfCards = deck.Count;
 
             for (var rightIndex = numberOfCards - 1; rightIndex >= 0; rightIndex--)
@@ -171,7 +171,7 @@ namespace BlackJackCS
             Console.WriteLine("Your cards are: ");
             foreach (var card in playerHand.IndividualCards)
             {
-                Console.WriteLine(card.Description());
+                Console.WriteLine(card.Title());
             }
             Console.Write("Your total hand value is: ");
             Console.WriteLine(playerHand.TotalValue());
@@ -195,6 +195,7 @@ namespace BlackJackCS
             {
                 Console.WriteLine($"Next card is {newCard}.");
                 deck.Remove(newCard);
+                playerHand.Receive(newCard);
 
 
                 Console.WriteLine();
@@ -210,7 +211,7 @@ namespace BlackJackCS
                 Console.WriteLine("Your cards are now: ");
                 foreach (var card in playerHand.IndividualCards)
                 {
-                    Console.WriteLine(card.Description());
+                    Console.WriteLine(card.Title());
                 }
                 Console.Write("Your total hand value is now: ");
                 Console.WriteLine(playerHand.TotalValue());
@@ -222,7 +223,9 @@ namespace BlackJackCS
             else if (answer == "Stand" || answer == "stand" | answer == "STAND")
             {
                 Console.WriteLine();
+                Console.WriteLine("-----------------------------");
                 Console.WriteLine("Okay dealers turn...");
+                Console.WriteLine("-----------------------------");
                 Console.WriteLine();
             }
 
@@ -231,7 +234,7 @@ namespace BlackJackCS
             Console.WriteLine("Dealers cards are: ");
             foreach (var card in dealerHand.IndividualCards)
             {
-                Console.WriteLine(card.Description());
+                Console.WriteLine(card.Title());
             }
             Console.Write("Your total hand value is: ");
             Console.WriteLine(dealerHand.TotalValue());
@@ -241,8 +244,11 @@ namespace BlackJackCS
 
 
 
-
+            newCard = deck[0];
             Console.WriteLine($"Dealer gets a {newCard}.");
+            deck.Remove(newCard);
+            dealerHand.Receive(newCard);
+
 
 
 
