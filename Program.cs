@@ -234,12 +234,10 @@ namespace BlackJackCS
 
 
             Console.WriteLine();
-
             Console.WriteLine("-----------------------------");
-
             Console.WriteLine("Do you want to Hit or Stand?");
-
             Console.WriteLine("-----------------------------");
+            Console.WriteLine();
 
             var keepHitting = true;
             while (keepHitting == true && playerHand.TotalValue() <= 21)
@@ -257,13 +255,9 @@ namespace BlackJackCS
 
 
                     Console.WriteLine();
-
                     Console.WriteLine("-----------------------------");
-
                     Console.WriteLine("Okay hit");
-
                     Console.WriteLine("-----------------------------");
-
                     Console.WriteLine();
 
                     Console.WriteLine("Your cards are now: ");
@@ -273,6 +267,12 @@ namespace BlackJackCS
                     }
                     Console.Write("Your total hand value is now: ");
                     Console.WriteLine(playerHand.TotalValue());
+
+                    Console.WriteLine();
+                    Console.WriteLine("-----------------------------");
+                    Console.WriteLine("Do you want to Hit or Stand?");
+                    Console.WriteLine("-----------------------------");
+                    Console.WriteLine();
                 }
                 else
                 {
@@ -285,6 +285,11 @@ namespace BlackJackCS
                     Console.Write("Your total hand value is: ");
                     Console.WriteLine(playerHand.TotalValue());
 
+                    Console.WriteLine();
+                    Console.WriteLine("-----------------------------");
+                    Console.WriteLine("Okay stand!");
+                    Console.WriteLine("-----------------------------");
+                    Console.WriteLine();
 
                     Console.WriteLine();
                     Console.WriteLine("-----------------------------");
@@ -302,7 +307,6 @@ namespace BlackJackCS
                 deck.Remove(newDealerCard);
 
                 dealerHand.Receive(newDealerCard);
-                Console.WriteLine($"Dealer gets a {newDealerCard}.");
             }
 
             Console.WriteLine();
