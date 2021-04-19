@@ -3,62 +3,66 @@ using System.Collections.Generic;
 
 namespace BlackJackCS
 {
-    // class Card
-    // {
-    //     public string Rank;
-    //     public string Suit;
+    class Card
+    {
+        public string Rank;
+        public string Suit;
+        public int Value()
+        {
+            if (Rank == "2")
+            {
+                return 1;
+            }
+            if (Rank == "3")
+            {
+                return 1;
+            }
+            if (Rank == "4")
+            {
+                return 1;
+            }
+            if (Rank == "5")
+            {
+                return 1;
+            }
+            if (Rank == "6")
+            {
+                return 1;
+            }
+            if (Rank == "7")
+            {
+                return 1;
+            }
+            if (Rank == "8")
+            {
+                return 1;
+            }
+            if (Rank == "9")
+            {
+                return 1;
+            }
 
-    //     public int Value()
-    //     {
+            if (Rank == "Ace")
+            {
+                return 11;
+            }
+            else if (Rank == "Jack" || Rank == "Queen" || Rank == "King")
+            {
+                return 10;
+            }
+            else
+            {
+                return int.Parse(Rank);
+            }
+        }
+    }
 
-    //         var value = 0;
-    //         switch (Rank)
-    //         {
 
-    //             case "Ace":
-    //                 value = 11;
-    //                 break;
-    //             case "2":
-    //                 value = 2;
-    //                 break;
-    //             case "3":
-    //                 value = 3;
-    //                 break;
-    //             case "4":
-    //                 value = 4;
-    //                 break;
-    //             case "5":
-    //                 value = 5;
-    //                 break;
-    //             case "6":
-    //                 value = 6;
-    //                 break;
-    //             case "7":
-    //                 value = 7;
-    //                 break;
-    //             case "8":
-    //                 value = 8;
-    //                 break;
-    //             case "9":
-    //                 value = 9;
-    //                 break;
-    //             case "10":
-    //             case "Jack":
-    //             case "Queen":
-    //             case "King":
-    //                 value = 10;
-    //                 break;
-    //             default:
-    //                 value = 0;
-    //                 break;
 
-    //         }
-    //         return 0;
-    //     }
-
-    // }
     class Program
     {
+
+        // welcome code
         static void WelcomeToBlackJack()
         {
             Console.WriteLine("--------------------------------");
@@ -68,6 +72,8 @@ namespace BlackJackCS
             Console.WriteLine();
 
         }
+
+        // start game code
         static void WantToPlay()
         {
             Console.WriteLine("Are you ready to play? [Y/N]:");
@@ -82,6 +88,27 @@ namespace BlackJackCS
                 Console.WriteLine("Uhm... Ok... READY OR NOT WE ARE PLAYING!");
             }
 
+        }
+        // endgame code
+        static void WantToReplay()
+        {
+            var activeGame = true;
+            while (activeGame != true) ;
+            Console.WriteLine("Do you want to play again?");
+            var answer = Console.ReadLine();
+            if (answer == "Y" || answer == "y" | answer == "YES" | answer == "Yes" | answer == "yes")
+            {
+                activeGame = true;
+                Console.WriteLine("That's the spirit!");
+
+                // still needs method for game restart
+
+
+            }
+            else
+            {
+                activeGame = false;
+            }
         }
 
         static void Main(string[] args)
@@ -130,8 +157,6 @@ namespace BlackJackCS
             foreach (var all in deck) ;
 
             Console.WriteLine();
-
-
 
             var playerHand = new List<string>();
 
@@ -214,17 +239,10 @@ namespace BlackJackCS
             dealerHand.Add($"deck[0]");
             deck.RemoveAt(0);
 
-            // code to end the game
 
 
-
-            var activeGame = true;
-            while (activeGame != true) ;
+            WantToReplay();
             Console.WriteLine("Let's try your luck again real soon!");
-
-
-
-
         }
     }
 }
