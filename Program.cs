@@ -338,7 +338,7 @@ namespace BlackJackCS
             Console.WriteLine("Are you ready to play? [Y/N]:");
             var answer = Console.ReadLine().ToLower();
 
-            if (answer == "Y" | answer == "Yes" | answer == "yes")
+            if (answer == "Y" | answer == "y" | answer == "Yes" | answer == "yes")
             {
                 Console.WriteLine("Let's see who Lady Luck favors!");
             }
@@ -367,15 +367,26 @@ namespace BlackJackCS
                 var theGame = new Game();
                 theGame.Play();
 
-                Console.Write("Again? [Y]/[N] ");
+                Console.Write("Again? [Y]/[N]: ");
+                Console.WriteLine("");
                 var answer = Console.ReadLine().ToLower();
-                playerWantsToKeepGoing = (answer == "Y" | answer == "Yes" | answer == "yes");
+                if (answer == "Y" | answer == "y" | answer == "Yes" | answer == "yes")
+                {
+                    playerWantsToKeepGoing = true;
+                    Console.WriteLine("-----------------------------");
+                    Console.WriteLine("Alright again!");
+                    Console.WriteLine("-----------------------------");
+                }
+                else
+                {
+                    playerWantsToKeepGoing = false;
 
 
-                Console.WriteLine("-----------------------------");
-                Console.WriteLine("This was fun!");
-                Console.WriteLine("-----------------------------");
+                    Console.WriteLine("-----------------------------");
+                    Console.WriteLine("That was fun, bye!");
+                    Console.WriteLine("-----------------------------");
 
+                }
             }
         }
     }
