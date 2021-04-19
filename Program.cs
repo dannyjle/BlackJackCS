@@ -30,16 +30,67 @@ namespace BlackJackCS
         public string Rank { get; set; }
         public string Suit { get; set; }
 
-
         public int Value()
         {
-            // Work
-            return 0;
+            var theCardValue = 0;
+            if (Rank == "2")
+            {
+                theCardValue = 2;
+            }
+            else if (Rank == "3")
+            {
+                theCardValue = 3;
+            }
+            else if (Rank == "4")
+            {
+                theCardValue = 4;
+            }
+            else if (Rank == "5")
+            {
+                theCardValue = 5;
+            }
+            else if (Rank == "6")
+            {
+                theCardValue = 6;
+            }
+            else if (Rank == "7")
+            {
+                theCardValue = 7;
+            }
+            else if (Rank == "8")
+            {
+                theCardValue = 8;
+            }
+            else if (Rank == "9")
+            {
+                theCardValue = 9;
+            }
+            else if (Rank == "10")
+            {
+                theCardValue = 10;
+            }
+            else if (Rank == "Jack")
+            {
+                theCardValue = 10;
+            }
+            else if (Rank == "Queen")
+            {
+                theCardValue = 10;
+            }
+            else if (Rank == "King")
+            {
+                theCardValue = 10;
+            }
+            else if (Rank == "Ace")
+            {
+                theCardValue = 11;
+            }
+            return theCardValue;
         }
 
         public string Title()
         {
-            var newTitleString = $"The {Rank} of {Suit}";
+            var newTitleString = $"The {Rank} of {Suit} - this awards {Value()} points!";
 
             return newTitleString;
         }
