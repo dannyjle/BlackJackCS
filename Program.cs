@@ -123,7 +123,7 @@ namespace BlackJackCS
             }
             else
             {
-                Console.WriteLine("...OK READY OR NOT WE ARE PLAYING!");
+                Console.WriteLine("...OK READY OR NOT WE ARE PLAYING!!!");
             }
 
         }
@@ -248,13 +248,12 @@ namespace BlackJackCS
 
                 Console.WriteLine();
 
-                newCard = deck[0];
-
                 if (answer == "hit")
                 {
-                    Console.WriteLine($"Next card is {newCard}.");
-                    deck.Remove(newCard);
-                    playerHand.Receive(newCard);
+                    var nextCard = deck[0];
+
+                    deck.Remove(nextCard);
+                    playerHand.Receive(nextCard);
 
 
                     Console.WriteLine();
@@ -278,10 +277,34 @@ namespace BlackJackCS
                 else
                 {
                     keepHitting = false;
+                    Console.WriteLine("Your cards are: ");
+                    foreach (var card in playerHand.IndividualCards)
+                    {
+                        Console.WriteLine(card.Title());
+                    }
+                    Console.Write("Your total hand value is: ");
+                    Console.WriteLine(playerHand.TotalValue());
+
+
+                    Console.WriteLine();
+                    Console.WriteLine("-----------------------------");
+                    Console.WriteLine("Dealer's turn....");
+                    Console.WriteLine("-----------------------------");
+                    Console.WriteLine();
                 }
-
-
             }
+
+
+
+            while (dealerHand.TotalValue() < 17)
+            {
+                var newDealerCard = deck[0];
+                deck.Remove(newDealerCard);
+
+                dealerHand.Receive(newDealerCard);
+                Console.WriteLine($"Dealer gets a {newDealerCard}.");
+            }
+
             Console.WriteLine();
             Console.WriteLine("-----------------------------");
             Console.WriteLine("Dealers cards are: ");
@@ -289,18 +312,12 @@ namespace BlackJackCS
             {
                 Console.WriteLine(card.Title());
             }
-            Console.Write("Your total hand value is: ");
+            Console.Write(" total hand value is: ");
             Console.WriteLine(dealerHand.TotalValue());
             Console.WriteLine("-----------------------------");
             Console.WriteLine();
 
 
-
-
-            newCard = deck[0];
-            Console.WriteLine($"Dealer gets a {deck[0]}.");
-            deck.Remove(newCard);
-            dealerHand.Receive(newCard);
 
 
 
