@@ -115,15 +115,15 @@ namespace BlackJackCS
         static void WantToPlay()
         {
             Console.WriteLine("Are you ready to play? [Y/N]:");
-            var answer = Console.ReadLine();
+            var answer = Console.ReadLine().ToLower();
 
-            if (answer == "Y" || answer == "y" | answer == "YES" | answer == "Yes" | answer == "yes")
+            if (answer == "y" | answer == "Yes")
             {
                 Console.WriteLine("Let's see who Lady Luck favors!");
             }
             else
             {
-                Console.WriteLine("Uhm... Ok... READY OR NOT WE ARE PLAYING!");
+                Console.WriteLine("...OK READY OR NOT WE ARE PLAYING!");
             }
 
         }
@@ -133,8 +133,8 @@ namespace BlackJackCS
             var activeGame = true;
             while (activeGame != true) ;
             Console.WriteLine("Do you want to play again?");
-            var answer = Console.ReadLine();
-            if (answer == "Y" || answer == "y" | answer == "YES" | answer == "Yes" | answer == "yes")
+            var answer = Console.ReadLine().ToLower();
+            if (answer == "y" | answer == "Yes")
             {
                 activeGame = true;
                 Console.WriteLine("That's the spirit!");
