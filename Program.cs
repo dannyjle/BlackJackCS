@@ -14,10 +14,14 @@ namespace BlackJackCS
         }
         public int TotalValue()
         {
-            // Work
-
-            return 0;
+            var total = 0;
+            foreach (var card in IndividualCards)
+            {
+                total += card.Value();
+            }
+            return total;
         }
+
 
     }
 
@@ -84,7 +88,7 @@ namespace BlackJackCS
                 activeGame = true;
                 Console.WriteLine("That's the spirit!");
 
-                // still needs method for game restart
+                // still needs class for game restart
 
 
             }
@@ -245,7 +249,7 @@ namespace BlackJackCS
 
 
             newCard = deck[0];
-            Console.WriteLine($"Dealer gets a {newCard}.");
+            Console.WriteLine($"Dealer gets a {deck[0]}.");
             deck.Remove(newCard);
             dealerHand.Receive(newCard);
 
