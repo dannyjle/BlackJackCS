@@ -96,69 +96,10 @@ namespace BlackJackCS
         }
     }
 
-
-
-    class Program
+    class Game
     {
-        // welcome code
-        static void WelcomeToBlackJack()
+        public void Play()
         {
-            Console.WriteLine("--------------------------------");
-            Console.WriteLine(" Welcome to No Stakes Blackjack!");
-            Console.WriteLine("--------------------------------");
-            Console.WriteLine();
-            Console.WriteLine();
-
-        }
-
-        // start game code
-        static void WantToPlay()
-        {
-            Console.WriteLine("Are you ready to play? [Y/N]:");
-            var answer = Console.ReadLine().ToLower();
-
-            if (answer == "y" | answer == "Yes")
-            {
-                Console.WriteLine("Let's see who Lady Luck favors!");
-            }
-            else
-            {
-                Console.WriteLine("...OK READY OR NOT WE ARE PLAYING!!!");
-            }
-
-        }
-        // endgame code
-        static void WantToReplay()
-        {
-            var activeGame = true;
-            while (activeGame != true) ;
-            Console.WriteLine("Do you want to play again?");
-            var answer = Console.ReadLine().ToLower();
-            if (answer == "y" | answer == "Yes")
-            {
-                activeGame = true;
-                Console.WriteLine("That's the spirit!");
-
-                // still needs class for game restart
-
-
-            }
-            else
-            {
-                activeGame = false;
-            }
-        }
-
-        static void Main(string[] args)
-        {
-            Console.WriteLine();
-
-            WelcomeToBlackJack();
-
-            Console.WriteLine();
-
-            WantToPlay();
-
             //creating the deck
             var deck = new List<Card>();
             var ranks = new List<string>() { "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King" };
@@ -268,11 +209,24 @@ namespace BlackJackCS
                     Console.Write("Your total hand value is now: ");
                     Console.WriteLine(playerHand.TotalValue());
 
-                    Console.WriteLine();
-                    Console.WriteLine("-----------------------------");
-                    Console.WriteLine("Do you want to Hit or Stand?");
-                    Console.WriteLine("-----------------------------");
-                    Console.WriteLine();
+                    if (playerHand.TotalValue() > 21)
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine("-----------------------------");
+                        Console.WriteLine("BUST!");
+                        Console.WriteLine("-----------------------------");
+                        Console.WriteLine();
+                    }
+                    if (playerHand.TotalValue() < 21)
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine("-----------------------------");
+                        Console.WriteLine("Do you want to Hit or Stand?");
+                        Console.WriteLine("-----------------------------");
+                        Console.WriteLine();
+                    }
+
+
                 }
                 else
                 {
@@ -301,7 +255,7 @@ namespace BlackJackCS
 
 
 
-            while (dealerHand.TotalValue() < 17)
+            while (dealerHand.TotalValue() < 17 && playerHand.TotalValue() <= 21)
             {
                 var newDealerCard = deck[0];
                 deck.Remove(newDealerCard);
@@ -321,17 +275,108 @@ namespace BlackJackCS
             Console.WriteLine("-----------------------------");
             Console.WriteLine();
 
+            if (playerHand.TotalValue() > 21)
+            {
+                Console.WriteLine();
+                Console.WriteLine("-----------------------------");
+                Console.WriteLine("Better luck next time...");
+                Console.WriteLine("-----------------------------");
+                Console.WriteLine();
+
+            }
+            else if (dealerHand.TotalValue() > 21)
+            {
+                Console.WriteLine();
+                Console.WriteLine("-----------------------------");
+                Console.WriteLine("LADY LUCK FAVORS YOU! YOU WIN!");
+                Console.WriteLine("-----------------------------");
+                Console.WriteLine();
+            }
+            else if (dealerHand.TotalValue() > playerHand.TotalValue())
+            {
+                Console.WriteLine();
+                Console.WriteLine("-----------------------------");
+                Console.WriteLine("Better luck next time...");
+                Console.WriteLine("-----------------------------");
+                Console.WriteLine();
+            }
+            else if (playerHand.TotalValue() > dealerHand.TotalValue())
+            {
+                Console.WriteLine();
+                Console.WriteLine("-----------------------------");
+                Console.WriteLine("LADY LUCK FAVORS YOU! YOU WIN!");
+                Console.WriteLine("-----------------------------");
+                Console.WriteLine();
+            }
+            else
+            {
+                Console.WriteLine();
+                Console.WriteLine("-----------------------------");
+                Console.WriteLine("Sorry! Ties go to the dealer!");
+                Console.WriteLine("-----------------------------");
+                Console.WriteLine();
+            }
+        }
+    }
+
+    class Program
+    {
+        // welcome code
+        static void WelcomeToBlackJack()
+        {
+            Console.WriteLine("--------------------------------");
+            Console.WriteLine(" Welcome to No Stakes Blackjack!");
+            Console.WriteLine("--------------------------------");
+            Console.WriteLine();
+            Console.WriteLine();
+
+        }
+
+        // start game code
+        static void WantToPlay()
+        {
+            Console.WriteLine("Are you ready to play? [Y/N]:");
+            var answer = Console.ReadLine().ToLower();
+
+            if (answer == "Y" | answer == "Yes" | answer == "yes")
+            {
+                Console.WriteLine("Let's see who Lady Luck favors!");
+            }
+            else
+            {
+                Console.WriteLine("...OK READY OR NOT WE ARE PLAYING!!!");
+            }
+
+        }
 
 
+        static void Main(string[] args)
+        {
+            Console.WriteLine();
+
+            WelcomeToBlackJack();
+
+            Console.WriteLine();
+
+            WantToPlay();
+
+            var playerWantsToKeepGoing = true;
+
+            while (playerWantsToKeepGoing)
+            {
+                var theGame = new Game();
+                theGame.Play();
+
+                Console.Write("Again? [Y]/[N] ");
+                var answer = Console.ReadLine().ToLower();
+                playerWantsToKeepGoing = (answer == "Y" | answer == "Yes" | answer == "yes");
 
 
+                Console.WriteLine("-----------------------------");
+                Console.WriteLine("This was fun!");
+                Console.WriteLine("-----------------------------");
 
-
-            Console.WriteLine("-----------------------------");
-            WantToReplay();
-            Console.WriteLine("Let's try your luck again real soon!");
-            Console.WriteLine("-----------------------------");
-
+            }
         }
     }
 }
