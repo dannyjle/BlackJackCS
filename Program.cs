@@ -223,6 +223,7 @@ namespace BlackJackCS
             Console.WriteLine("...dealing...");
             Console.WriteLine("-----------------------------");
             Console.WriteLine();
+
             Console.WriteLine("Your cards are: ");
             foreach (var card in playerHand.IndividualCards)
             {
@@ -240,50 +241,47 @@ namespace BlackJackCS
 
             Console.WriteLine("-----------------------------");
 
-            var answer = Console.ReadLine();
-
-            Console.WriteLine();
-
-            newCard = deck[0];
-
-            if (answer == "Hit" || answer == "hit" | answer == "HIT")
+            var keepHitting = true;
+            while (keepHitting == true && playerHand.TotalValue() <= 21)
             {
-                Console.WriteLine($"Next card is {newCard}.");
-                deck.Remove(newCard);
-                playerHand.Receive(newCard);
-
+                var answer = Console.ReadLine().ToLower();
 
                 Console.WriteLine();
 
-                Console.WriteLine("-----------------------------");
+                newCard = deck[0];
 
-                Console.WriteLine("Okay hit");
-
-                Console.WriteLine("-----------------------------");
-
-                Console.WriteLine();
-
-                Console.WriteLine("Your cards are now: ");
-                foreach (var card in playerHand.IndividualCards)
+                if (answer == "hit")
                 {
-                    Console.WriteLine(card.Title());
+                    Console.WriteLine($"Next card is {newCard}.");
+                    deck.Remove(newCard);
+                    playerHand.Receive(newCard);
+
+
+                    Console.WriteLine();
+
+                    Console.WriteLine("-----------------------------");
+
+                    Console.WriteLine("Okay hit");
+
+                    Console.WriteLine("-----------------------------");
+
+                    Console.WriteLine();
+
+                    Console.WriteLine("Your cards are now: ");
+                    foreach (var card in playerHand.IndividualCards)
+                    {
+                        Console.WriteLine(card.Title());
+                    }
+                    Console.Write("Your total hand value is now: ");
+                    Console.WriteLine(playerHand.TotalValue());
                 }
-                Console.Write("Your total hand value is now: ");
-                Console.WriteLine(playerHand.TotalValue());
+                else
+                {
+                    keepHitting = false;
+                }
 
-
-                // code for value evaluation to see if bust and replay prompt
 
             }
-            else if (answer == "Stand" || answer == "stand" | answer == "STAND")
-            {
-                Console.WriteLine();
-                Console.WriteLine("-----------------------------");
-                Console.WriteLine("Okay dealers turn...");
-                Console.WriteLine("-----------------------------");
-                Console.WriteLine();
-            }
-
             Console.WriteLine();
             Console.WriteLine("-----------------------------");
             Console.WriteLine("Dealers cards are: ");
